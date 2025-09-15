@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+    <script>
+
+        function crearOpciones(desde, hasta){
+            for(i = desde; i <= hasta; i++){
+                document.write(`<option>${i}</option>`)
+            }
+        }
+    </script>
+</head>
+<body>
+    <form id="form1" name="form1" method="post" action="">
+        <select name="dia" id="dia">
+            <script>
+                crearOpciones(1, 31);
+            </script>
+        </select>
+        <select name="mes" id="mes">
+            <script>
+                crearOpciones(1, 12);
+            </script>
+        </select>
+        <select name="anio" id="anio">
+            <script>
+                crearOpciones(1900, 2025)
+            </script>
+        </select>
+    </form>
+</body>
+</html>

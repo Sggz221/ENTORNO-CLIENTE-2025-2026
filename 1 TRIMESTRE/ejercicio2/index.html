@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+
+    <script>
+        var pasadas = 0;
+        var contador = document.getElementById("elemento")
+        function anunciarPasadas(){
+            pasadas++ ;
+            alert('Has pasado el ratón por encima ' + pasadas + ' veces');
+        }
+    </script>
+
+</head>
+<body>
+    <h1>Ejermplo 2 JavaScript</h1>
+    <span onmouseover="anunciarPasadas()">Pasa el ratón por aquí</span>
+    <span id="elemento">0</span>
+    
+</body>
+</html>

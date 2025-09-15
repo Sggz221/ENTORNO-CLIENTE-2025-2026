@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+    <script type="text/javascript">
+        var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+        var mesActual = new Date().getMonth();
+
+
+        document.write("<select>")
+        for(var i = 0; i <= 11 ; i++){
+            if(mesActual == i){
+                document.write("<option selected>" + meses[i] + "</option>")
+            }
+            else{
+                document.writeln("<option>" + meses[i] + "</option>");
+            }
+        }
+        document.write("</select>")
+
+    </script>
+</head>
+<body>
+    <h1>Los 12 mese del año</h1>
+</body>
+</html>
