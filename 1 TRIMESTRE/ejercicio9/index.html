@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 9</title>
+    <style>
+        * {
+            margin: 5px;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+        }
+        #formulario{
+            margin: 10%;
+            width: 40%;
+            display: flow;
+            justify-content: left;
+        }
+        #sendButton{
+            width: 60%;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0px;
+        }
+        li {
+            margin-left: 0px;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" id="formulario" src="form.js">
+        <ul>
+            <li>
+                <label for="nombreInput">Nombre*</label>
+                <input type="text" name="nombre" id="nombreInput" placeholder="Introduce tu nombre">
+            </li>
+            <li>
+                <label for="direccionInput">Dirección*</label>
+                <input type="text" name="direccion" id="direccionInput" placeholder="Introduce tu direccion">
+            </li>
+            <li>
+                <label for="edadInput">Edad*</label>
+                <input type="text" name="edad" id="edadInput" placeholder="Introduce tu edad">
+            </li>
+            <li>
+                <label for="emailInput">Email*</label>
+                <input type="text" name="email" id="emailInput" placeholder="Introduce tu email">
+            </li>
+            <li>
+                <label for="estadoCivilInput">Estado civil*</label>
+                <select name="" id="estadoCivilInput">
+                    <option>Soltero</option>
+                    <option>Casado</option>
+                </select>
+            </li>
+            <li>
+                <label for="aceptoInput">Acepto las condiciones</label>
+                <input type="checkbox" name="acepto" id="aceptoInput">
+            </li>
+        </ul>
+        <input type="submit" value="Enviar" id="sendButton">
+    </form>
+</body>
+</html>

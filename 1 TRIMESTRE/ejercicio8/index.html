@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 8</title>
+    <script>
+        function apagar(){
+            var caja = document.getElementById("caja")
+            caja.style.display="none";
+        }
+        function encender(){
+            var caja = document.getElementById("caja")
+            caja.style.display="block";
+        }
+        function alternar(){
+            var caja = document.getElementById("caja")
+            var boton = document.getElementById("boton")
+
+            if(caja.style.display == "block"){
+                apagar();
+                boton.value = "Encender"
+            }
+            else {
+                encender();
+                boton.value = "Apagar";
+            }
+        }
+    </script>
+    <style>
+        #caja{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" id="boton" value="Apagar" onclick="alternar()">
+    <input type="checkbox" id="checkboxEncender" onchange="alternar()" checked="checked">
+    <div id="caja"></div>
+    <input type="button" value="Apagar" onclick="apagar()">
+    <input type="button" value="Encender" onclick="encender()">
+</body>
+</html>
