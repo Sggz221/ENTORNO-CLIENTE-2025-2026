@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Formulario normalizado</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+
+	<script language="javascript" type="text/javascript" src="js/validar.js"></script>
+	<script language="javascript" type="text/javascript">
+
+		function mostrar(elemento){
+			elemento.style.display = "block";
+		}
+		
+		function noMostrar(elemento){
+			elemento.style.display = "none";
+		}
+
+		function entraFoco(elemento){
+			elemento.style.backgroundColor = "lightblue";
+		}
+
+		function saleFoco(elemento){
+			elemento.style.backgroundColor = "";
+		}
+		
+		function validarStringInside(elemento,min,max,capaerror){ //para los campos tipo string de este formulario
+			if(!validarString(elemento.value,min,max)){
+				elemento.style.backgroundColor = "lightyellow";
+				elemento.style.borderColor = "red";
+				mostrar(capaerror);
+			} else {
+				elemento.style.backgroundColor = "";
+				elemento.style.borderColor = "";
+				noMostrar(capaerror);
+			}
+		}
+
+		function validarTelefonoInside(elemento, capaerror){ //[679]99999999 /primer digito 6, 7 o 9 y 8 digitos mas 
+			if(!validarTelefono(elemento.value)){ 
+				elemento.style.backgroundColor = "lightyellow";
+				elemento.style.borderColor = "red";	
+				mostrar(capaerror);
+			}else{
+				elemento.style.backgroundColor = "";
+				elemento.style.borderColor = "";
+				noMostrar(capaerror);
+			}
+		}
+
+		function validarCPInside(elemento,min,max,capaerror){ //comprueba si es numerico el campo enviado 
+			if(!validarCP(elemento.value)){
+				elemento.style.backgroundColor = "lightyellow";
+				elemento.style.borderColor = "red";	
+				mostrar(capaerror);
+			}else{
+				elemento.style.backgroundColor = "";
+				elemento.style.borderColor = "";
+				noMostrar(capaerror);				
+			}
+		}
+
+		function validarBotonesRadioInside(caja,nombre){ //comprueba que algun botón está pulsado
+			if(!validarBotones(nombre)){
+				caja.style.backgroundColor = "";
+				caja.style.borderColor = "";
+			}else{
+				caja.style.backgroundColor = "beige";
+				caja.style.borderColor = "beige";
+			}
+		}
+		
+		function validarListasInside(caja,nombre){ //comprueba que hay seleccionado algun elemento de la lista 
+			if(!validarListas(nombre)){
+				caja.style.backgroundColor = "lightyellow";
+				caja.style.borderColor = "red";
+			}else{
+				caja.style.backgroundColor = "white";
+				caja.style.borderColor = "blue";
+			}
+		}
+
+		function validarContrasenaInside(elemento,capaerror){ //valida el formato de la contraseña a XXXXX 
+			if(!validarContrasena(elemento)){
+				elemento.style.backgroundColor = "lightyellow";
+				elemento.style.borderColor = "red";
+				mostrar(capaerror);
+			}else{
+				elemento.style.backgroundColor ="";
+				elemento.style.borderColor = "";
+				noMostrar(capaerror);	
+			}
+		}
+		
+		function mismaContrasenaInside(pasw1,pasw2,capaerror){ //valida que ambas contraseñas sean iguales (inside)
+			if(pasw1.value != pasw2.value){
+				pasw2.style.backgroundColor = "lightyellow";
+				pasw2.style.borderColor = "red";
+				mostrar(capaerror);
+			}else{
+				pasw2.style.backgroundColor ="";
+				pasw2.style.borderColor = "";
+				noMostrar(capaerror);	
+			}
+		}
+
+		function recuperarDatos(){
+
+			var mensCorrecto = "Nombre y apellidos: " + nombre.value + ".\n" +
+								"Direccion: " + direccion.value + ".\n" +
+								"Direccion completa: " + direccionCompleta.value + ".\n" +
+								"Telefono: " + telefono.value + ".\n" +
+								"Codigo postal: " + codigoPostal.value + ".\n" +
+								"Ciudad: " + ciudad.value + ".\n" +
+								"Provincia: ";
+			var lis = document.getElementById("provincia");
+			if(lis[lis.selectedIndex].value != "selecciona")
+				mensCorrecto += lis[lis.selectedIndex].value + ".\n";
+			else
+				mensCorrecto += "\n";
+				mensCorrecto += "Preferente: ";
+
+				if(preferente.checked){
+					mensCorrecto += "Marcado.";
+				}else{
+					mensCorrecto += "No marcado.";
+				}
+
+				mensCorrecto += "\nSexo: ";
+
+				if(hombre.checked)
+					mensCorrecto += "Hombre.";
+				else
+					mensCorrecto += "Mujer.";
+
+				mensCorrecto += "\nIntereses: ";
+
+				lis = document.getElementById("interes");
+
+				var cont =0;
+
+				for(var i = 0; i< lis.length; i++){
+					if(lis[i].selected){
+						if(cont == 0)
+							mensCorrecto += lis[i].value;
+						else
+							mensCorrecto += ", " + lis[i].value;
+						cont++;
+					}
+				}
+				mensCorrecto += ".\nUsuario: " + usuario.value +".";
+
+		return mensCorrecto;
+		}
+		
+		function validarForm(){
+			var res = true;
+			var mensaje = "";
+			if(!validarString(nombre.value,2,120)){
+				res = false;
+				mensaje += "el nombre y apellidos tiene que ser una cadena de caracteres de entre 2 y 120 caracteres.\n";
+			}
+			if(!validarString(direccion.value,4,120)){
+				res = false;
+				mensaje += "la direccion tiene que ser una cadena de caracteres de entre 4 y 120 caracteres.\n";
+			}
+			if(!validarString(direccionCompleta.value,0,120)){
+				res = false;
+				mensaje += "la direccion completa tiene que tener como maximo 120 caracteres.\n";
+			}
+			if(!validarTelefono(telefono.value)){
+				res = false;
+				mensaje += "el telefono tiene que ser un numero de nueve digitos y comenzar con 6, 7 o 9.\n";
+			}
+			if(!validarCP(codigoPostal.value)){
+				res = false;
+				mensaje += "el codigo postal tiene que ser un numero de 5 digitos.\n";
+			}
+			if (provincia.options[provincia.selectedIndex].value==0) {
+				res = false;
+				mensaje += "Debe de seleccionar una provincia\n";
+			}	
+			if(!validarString(usuario,1,null)){
+				res = false;
+				mensaje += "el nombre de usuario no puede estar en blanco y no puden ser un numero.\n";
+			}
+			if(!validarContrasena(contrasena)){
+				res = false;
+				mensaje += "la contraseña tiene que tener entre 8 y 16 caracteres, que debe contener solo letras y numeros, y por lo menos una letra mayuscula, una letra minuscula y un numero.\n";
+			}
+			if(contrasena.value != contrasena2.value){
+				res = false;
+				mensaje += "las contraseñas no coinciden";
+			}		
+
+			if(res == false)
+				alert(mensaje);
+
+			return res;
+		}
+		
+	</script>     
+	
+</head>
+
+<body>
+	<div id="body">
+		<h2 id="titulo">REGISTRO DE USUARIO</h1>
+		<form id="formulario" action="javascript:alert(recuperarDatos())" onsubmit="return validarForm()">
+			<div>
+				<label>Nombre y apellidos</label><br/>
+				<input class="caja" id="nombre" type="text" name="nombre" placeholder="Nombre & apellidos" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,120,errorNombre);" maxlength="120">
+				<p class="obligatorio" id="errorNombre">Nombre debe de ser obligatorio y tener entre 2 y 120 caracteres</p>
+			</div>
+			<div>
+				<label class="linea">Direccion</label><br/>
+				<input class="caja" id="direccion" type="text" name="direccion" placeholder="Direccion" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,4,120,errorDireccion);" maxlength="120">
+				<p class="obligatorio" id="errorDireccion">Dirección es obligatorio entre 4 y 120 caracteres </p>
+			</div>
+			<div>
+				<label class="linea">Direccion completa</label><br/>
+				<input class="caja" id="direccionCompleta" type="text" name="direccionCompleta" placeholder="Direccion completa" onfocus="entraFoco(this);" onblur="saleFoco(this);validarStringInside(this,0,120,capanula);" maxlength="120">
+				<p class="obligatorio" id="capanula"></p>
+			</div>
+			<div>
+				<label class="linea">Telefono</label><br/>
+				<input class="caja" id="telefono" type="text" name="telefono" placeholder="Telefono" onfocus="entraFoco(this)" onblur="saleFoco(this);validarTelefonoInside(this,errorTelefono);" maxlength="9">
+				<p class="obligatorio" id="errorTelefono">Telefono tiene que ser de 9 de longitud y comenzar por 6, 7 o 9</p>
+			</div>
+			<div>
+				<label class="linea">CP</label><br/>
+				<input class="caja" id="codigoPostal" type="text" name="codigoPostal" placeholder="Codigo postal" onfocus="entraFoco(this)" onblur="saleFoco(this);validarCPInside(this,5,5,errorCP);" maxlength="5">
+				<p class="obligatorio" id="errorCP">Código postal erróneo, formato 00000 </p>
+			</div>
+			<div>
+				<label class="linea">Ciudad</label><br/>
+				<input class="caja" id="ciudad" type="text" name="ciudad" placeholder="Ciudad" onfocus="entraFoco(this);" onblur="saleFoco(this)">
+			</div>
+			<div>
+				<label class="linea">Provincia</label><br/>
+				<select class="cajaList1" id="provincia" name="provincia" onfocus="entraFoco(this);" onblur="saleFoco(this)">
+  					<option value="0" selected="selected">- Selecciona provincia -</option>
+  					<option value="29">Madrid</option>
+  					<option value="05">Avila</option>
+  					<option value="45">Toledo</option>
+  					<option value="43">Segovia</option>
+  					<option value="21">Guadalajara</option>
+				</select>
+			</div>
+			<div class="noCaja" onmouseover="entraFoco(this);" onmouseout="saleFoco(this);">
+				<label class="linea">Preferente</label>
+				<input id="preferente" type="checkbox" name="prefe">
+				<span id="tooltip">Accede a una vida mejor</span>
+			</div>
+			<div class="noCaja" id="sexo" onmouseover="entraFoco(this);" onmouseout="saleFoco(this);validarBotonesRadioInside(sexo,'sexo');">
+				*<input id="hombre" type="radio" name="sexo" value="H">
+				<label class="linea">Hombre</label>
+				<input id="mujer" type="radio" name="sexo" value="M">
+				<label class="linea">Mujer</label>
+			</div>
+			<p class="obligatorio" id="obligatorioSexo">campo obligatorio</p>
+			<div>
+				<label class="linea">Intereses</label><br/>
+				<select class="cajaList" id="interes" name="interes" multiple="multiple" onfocus="entraFoco(this);" onblur="saleFoco(this);validarListasInside(interes,'interes');">
+  					<option value="amor">Amor</option>
+  					<option value="leer">Leer</option>
+  					<option value="deportes">Deportes</option>
+  					<option value="peliculas">Peliculas</option>
+  					<option value="videojuegos">Videojuegos</option>
+				</select>
+			</div>
+			<div>
+				<label class="linea">Usuario</label><br/>
+				<input class="caja" id="usuario" type="text" name="user" placeholder="Nombre de usuario" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,1,10,obligatorioUsuario);">
+				<p class="obligatorio" id="obligatorioUsuario">Usuario obligatorio</p>
+			</div>
+			<div>
+				<label class="linea">Contraseña</label><br/>
+				<input class="caja" id="contrasena" type="password" name="contrasena" placeholder="Contraseña de usuario" onfocus="entraFoco(this)"  onblur="saleFoco(this);validarContrasenaInside(this,obligatorioContrasena)" onchange="mismaContrasenaInside(this, contrasena2, obligatorioRepCon)">
+				<p class="obligatorio" id="obligatorioContrasena">Introduzca una contraseña entre 8 y 16 caracteres, con al menos 1 mayuscula 1 minuscula y 1 numero</p>
+			</div>
+			<div>
+				<label class="linea">Repetir contraseña</label><br/>
+				<input class="caja" id="contrasena2" type="password" name="contrasena2" placeholder="Repita contraseña" onfocus="entraFoco(this)" onblur="saleFoco(this);mismaContrasenaInside(this, contrasena, obligatorioRepCon)">
+				<p class="obligatorio" id="obligatorioRepCon">Contraseña debe de ser igual</p>
+			</div>
+			<button id="submit" type="submit" value="submit" onmouseover="entraFoco(this);" onmouseout="saleFoco(this);">Enviar</button>
+		</form>
+	</div>
+
+</body>
+</html>

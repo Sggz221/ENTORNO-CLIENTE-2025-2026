@@ -1,0 +1,110 @@
+@charset "utf-8";
+body, div, input, label, button, p, h2, select, option, form, span{
+	margin: 0;
+	padding: 0;
+}
+body *{
+	font-family: "Verdana";
+}
+#body{
+	padding: 0 2% 2% 2%;
+	background-color: Aliceblue;
+}
+#titulo{
+	color: blue;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	font-style: italic;
+}
+#formulario{
+	border: grey solid 3px;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	padding-left: 3%;
+	margin-left: 16%;
+	margin-right: 16%;
+	border-radius: 20px;
+	background-color: beige;
+
+}
+.linea{
+	font-size: 130%;
+}
+.caja{
+	margin-top: 1.5%;
+	margin-bottom: 2.5%;
+	border-radius: 20px;
+	width: 60%;
+	height: 30px;
+	border-style: solid;
+	border-color: blue;
+	font-size: 90%;
+	font-family:  "Verdana";
+	padding-left: 1%;
+}
+.noCaja{
+	margin-top: 1.5%;
+	margin-bottom: 2.5%;
+}
+.cajaList{
+	margin-top: 1.5%;
+	margin-bottom: 2.5%;
+	border-style: solid;
+	border-color: red;
+	background-color: lightyellow;
+	padding-top: 0.5%;
+	height: 110px;
+	padding-left: 1%;
+	width: 40%;
+	font-family: "Verdana";
+	font-size: 90%;
+}
+.cajaList1{
+	margin-top: 1.5%;
+	margin-bottom: 2.5%;
+	border-style: solid;
+	border-color: blue;
+	width: 40%;
+	font-family: "Verdana";
+	font-size: 90%;
+	padding: 0.5%;
+}
+#preferente{
+	margin-left: 5%;
+}
+#mujer{
+	margin-left: 5%;
+}
+#submit{
+	border: blue solid 2px;
+	padding: 1%;
+	margin-top: 2%;
+	margin-left: 43%;
+	font-size: 90%;
+	font-family: "Verdana";
+}
+.obligatorio{
+	display: none;
+	color: red;
+	font-family: "Verdana";
+	font-size: 90%;
+	padding-bottom: 3%;
+}
+#sexo{
+	border-color: red;
+	border-style: solid;
+	border-width: 2px;
+	background-color: lightyellow;
+}
+#tooltip{
+	visibility: hidden;
+	background-color: black;
+	color: white;
+	font-size: 90%;
+	padding: 0.6%;
+	border-radius: 25px;
+	margin-left: 1%;
+}
+.noCaja:hover #tooltip{
+	visibility: visible;
+}

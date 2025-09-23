@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <script src="validator.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    
+    <script>
+        function mostrar(elemento){
+            elemento.style.display = "block";
+        }
+        function noMostrar(elemento){
+            elemento.style.display = "none";
+        }
+        function getFoco(elemento){
+            elemento.style.backgroundColor = "lightblue";
+        }
+        function outFoco(elemento){
+            elemento.style.backgroundColor = "";
+        }
+
+        function validarStringInside(elemento,min,max,idError){ 
+			if(!validarString(elemento.value,min,max)){
+				elemento.style.backgroundColor = "lightyellow";
+				elemento.style.borderColor = "red";
+				mostrar(idError);
+			} else {
+				elemento.style.backgroundColor = "";
+				elemento.style.borderColor = "";
+				noMostrar(idError);
+			}
+		}
+
+        function validarTelefonoInside(elemento, idError){ //[679]99999999 /primer digito 6, 7 o 9 y 8 digitos mas 
+			if(!validarTelefono(elemento.value)){ 
+				elemento.style.backgroundColor = "lightyellow";
+				elemento.style.borderColor = "red";	
+				mostrar(idError);
+			}else{
+				elemento.style.backgroundColor = "";
+				elemento.style.borderColor = "";
+				noMostrar(idError);
+			}
+		}
+
+        function validarCPInside(elemento,min,max,idError){ //comprueba si es numerico el campo enviado 
+			if(!validarCP(elemento.value)){
+				elemento.style.backgroundColor = "lightyellow";
+				elemento.style.borderColor = "red";	
+				mostrar(idError);
+			}else{
+				elemento.style.backgroundColor = "";
+				elemento.style.borderColor = "";
+				noMostrar(idError);				
+			}
+		}
+
+        function validarEdadInside(elemento, idError){
+            if(!validarEdad(elemento.value)){
+                elemento.style.bacgroundColor = "lightyellow";
+                elemnto.style.borderColor = "red";
+            }
+            else{
+                elemento.style.bacgroundColor = "";
+                elemento.style.borderColor = "";
+                noMostrar(idError);
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="javascript:alert(recuperarDatos())" id="formulario" onsubmit="return validarForm()">
+        <div class="nombre">
+            <label>Nombre</label>
+            <input type="text" id="nombre" placeholder="Escriba su nombre" onfocus="getFoco(this)" onblur="outFoco(this); validarStringInside(this, 2, 20, 'nombreError')">
+            <span id="nombreError">El nombre no puede estar en blanco, menor a 2 caracteres ni mayor a 20 caracteres</span>
+        </div>
+        <div class="direccion">
+             <label>Direccion</label>
+            <input type="text" id="direccion" placeholder="Escriba su direccion" onfocus="getFoco(this)" onblur="outFoco(this); validarStringInside(this, 2, 40, 'direccionError')">
+            <span id="direccionError">La direccion no puede estar en blanco, menor a 2 caracteres ni mayor a 40 caracteres</span>
+        </div>
+        <div class="telefono">
+             <label>Teléfono</label>
+            <input type="text" id="telefono" placeholder="Escriba su teléfono" onfocus="getFoco(this)" onblur="outFoco(this); validarTelefonoInside(this, 'telefonoError')" maxlength="9">
+            <span id="telefonoError">La direccion no puede estar en blanco o ser distinto de 9 digitos</span>
+        </div>
+        <div class="edad">
+            <label>Edad</label>
+            <input type="text" id="edad" placeholder="Escriba su edad" onfocus="getFoco(this)" onblur="outFoco(this); validarEdadInside(this, 'edadError')">
+            <span id="edadError">La edad no puede ser menor a 18 años</span>
+        </div>
+        <div class="cp">
+            <label class="linea">CP</label>
+			<input id="codigoPostal" type="text" placeholder="Codigo postal" onfocus="entraFoco(this)" onblur="saleFoco(this); validarCPInside(this,5,5,errorCP);" maxlength="5">
+			<span class="obligatorio" id="errorCP">Código postal erróneo, formato 00000 </span>
+        </div>
+    </form>
+</body>
+</html>
