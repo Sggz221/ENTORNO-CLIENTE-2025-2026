@@ -24,6 +24,32 @@
 			elemento.style.backgroundColor = "";
 		}
 		
+		function validarDniInside(dni, capaerror) {
+			if(!validarDni(dni.value)) {
+				dni.style.backgroundColor = "lightyellow";
+				dni.style.borderColor = "red";
+				mostrar(capaerror)
+			}
+			else{
+				dni.style.backgroundColor = "";
+				dni.style.borderColor = "";
+				noMostrar(capaerror)
+			}
+		}
+
+		function validarFechaInside(fecha, capaerror) {
+			if(!validarFecha(fecha.value)){
+				fecha.style.backgroundColor = "lightyellow";
+				fecha.style.borderColor = "red";
+				mostrar(capaerror);
+			}
+			else{
+				fecha.style.backgroundColor = "";
+				fecha.style.borderColor = "";
+				noMostrar(capaerror);
+			}
+		}
+
 		function validarStringInside(elemento,min,max,capaerror){ //para los campos tipo string de este formulario
 			if(!validarString(elemento.value,min,max)){
 				elemento.style.backgroundColor = "lightyellow";
@@ -207,7 +233,7 @@
             <h1>DeJovenes</h1>
             <h2>Únete al club</h2>
         </div>
-        <from id="formulario">
+        <form id="formulario" action="">
             <div>
                 <label>Nombre</label><br>
                 <input type="text" placeholder="Introduzca su nombre" id="nombreInput" onfocus="inFoco(this)" onblur="outFoco(this);validarStringInside(this, 1, 20, errorNombre);">
@@ -215,15 +241,20 @@
             </div>
             <div>
                 <label>Apellidos</label><br>
-                <input type="text" placeholder="Introduzca sus apellidos" id="nombreInput" onfocus="inFoco(this)" onblur="outFoco(this);validarStringInside(this, 1, 20, errorApellidos);">
+                <input type="text" placeholder="Introduzca sus apellidos" id="apellidosInput" onfocus="inFoco(this)" onblur="outFoco(this);validarStringInside(this, 1, 20, errorApellidos);">
                 <p class="error" id="errorApellidos">Error, los apellidos no pueden estar vacíos o superar los 40 caracteres.</p>
             </div>
             <div>
                 <label>DNI</label><br>
-                <input type="text" placeholder="Introduzca su nombre" id="nombreInput" onfocus="inFoco(this)" onblur="outFoco(this);validarStringInside(this, 1, 20, errorDNI);">
+                <input type="text" placeholder="Introduzca su DNI" id="dniInput" onfocus="inFoco(this)" onblur="outFoco(this);validarDniInside(this, errorDNI);">
                 <p class="error" id="errorDNI">Error, el dni no es válido o está vacío.</p>
             </div>
-        </from>
+			<div>
+				<label>Fecha de nacimiento</label><br>
+                <input type="text" placeholder="DD/MM/AAAA" id="fechainput" onfocus="inFoco(this)" onblur="outFoco(this);validarFechaInside(this, errorFecha);">
+                <p class="error" id="errorFecha">Error, la fecha de nacimiento no tiene el formato correcto DD/MM/AAAA o no es valida. Tenga en cuenta que si la fecha solo tiene una cifra debe poner los 0 que considere.</p>
+			</div>
+        </form>
     </main>
 </body>
 </html>
