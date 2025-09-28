@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeJovenes</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/validator.js"></script>
+    <script language="javascript" type="text/javascript">
+
+		function mostrar(elemento){
+			elemento.style.display = "block";
+		}
+		
+		function noMostrar(elemento){
+			elemento.style.display = "none";
+		}
+
+		function inFoco(elemento){
+			elemento.style.backgroundColor = "lightblue";
+		}
+
+		function outFoco(elemento){
+			elemento.style.backgroundColor = "";
+		}
+		
+		function validarStringInside(elemento,min,max,capaerror){ //para los campos tipo string de este formulario
+			if(!validarString(elemento.value,min,max)){
+				elemento.style.backgroundColor = "lightyellow";
+				elemento.style.borderColor = "red";
+				mostrar(capaerror);
+			} else {
+				elemento.style.backgroundColor = "";
+				elemento.style.borderColor = "";
+				noMostrar(capaerror);
+			}
+		}
+
+		function validarTelefonoInside(elemento, capaerror){ //[679]99999999 /primer digito 6, 7 o 9 y 8 digitos mas 
+			if(!validarTelefono(elemento.value)){ 
+				elemento.style.backgroundColor = "lightyellow";
+				elemento.style.borderColor = "red";	
+				mostrar(capaerror);
+			}else{
+				elemento.style.backgroundColor = "";
+				elemento.style.borderColor = "";
+				noMostrar(capaerror);
+			}
+		}
+
+		function validarCPInside(elemento,min,max,capaerror){ //comprueba si es numerico el campo enviado 
+			if(!validarCP(elemento.value)){
+				elemento.style.backgroundColor = "lightyellow";
+				elemento.style.borderColor = "red";	
+				mostrar(capaerror);
+			}else{
+				elemento.style.backgroundColor = "";
+				elemento.style.borderColor = "";
+				noMostrar(capaerror);				
+			}
+		}
+
+		function validarBotonesRadioInside(caja,nombre){ //comprueba que algun botón está pulsado
+			if(!validarBotones(nombre)){
+				caja.style.backgroundColor = "";
+				caja.style.borderColor = "";
+			}else{
+				caja.style.backgroundColor = "beige";
+				caja.style.borderColor = "beige";
+			}
+		}
+		
+		function validarListasInside(caja,nombre){ //comprueba que hay seleccionado algun elemento de la lista 
+			if(!validarListas(nombre)){
+				caja.style.backgroundColor = "lightyellow";
+				caja.style.borderColor = "red";
+			}else{
+				caja.style.backgroundColor = "white";
+				caja.style.borderColor = "blue";
+			}
+		}
+
+		function validarContrasenaInside(elemento,capaerror){ //valida el formato de la contraseña a XXXXX 
+			if(!validarContrasena(elemento)){
+				elemento.style.backgroundColor = "lightyellow";
+				elemento.style.borderColor = "red";
+				mostrar(capaerror);
+			}else{
+				elemento.style.backgroundColor ="";
+				elemento.style.borderColor = "";
+				noMostrar(capaerror);	
+			}
+		}
+		
+		function mismaContrasenaInside(pasw1,pasw2,capaerror){ //valida que ambas contraseñas sean iguales (inside)
+			if(pasw1.value != pasw2.value){
+				pasw2.style.backgroundColor = "lightyellow";
+				pasw2.style.borderColor = "red";
+				mostrar(capaerror);
+			}else{
+				pasw2.style.backgroundColor ="";
+				pasw2.style.borderColor = "";
+				noMostrar(capaerror);	
+			}
+		}
+
+		function recuperarDatos(){
+
+			var mensCorrecto = "Nombre y apellidos: " + nombre.value + ".\n" +
+								"Direccion: " + direccion.value + ".\n" +
+								"Direccion completa: " + direccionCompleta.value + ".\n" +
+								"Telefono: " + telefono.value + ".\n" +
+								"Codigo postal: " + codigoPostal.value + ".\n" +
+								"Ciudad: " + ciudad.value + ".\n" +
+								"Provincia: ";
+			var lis = document.getElementById("provincia");
+			if(lis[lis.selectedIndex].value != "selecciona")
+				mensCorrecto += lis[lis.selectedIndex].value + ".\n";
+			else
+				mensCorrecto += "\n";
+				mensCorrecto += "Preferente: ";
+
+				if(preferente.checked){
+					mensCorrecto += "Marcado.";
+				}else{
+					mensCorrecto += "No marcado.";
+				}
+
+				mensCorrecto += "\nSexo: ";
+
+				if(hombre.checked)
+					mensCorrecto += "Hombre.";
+				else
+					mensCorrecto += "Mujer.";
+
+				mensCorrecto += "\nIntereses: ";
+
+				lis = document.getElementById("interes");
+
+				var cont =0;
+
+				for(var i = 0; i< lis.length; i++){
+					if(lis[i].selected){
+						if(cont == 0)
+							mensCorrecto += lis[i].value;
+						else
+							mensCorrecto += ", " + lis[i].value;
+						cont++;
+					}
+				}
+				mensCorrecto += ".\nUsuario: " + usuario.value +".";
+
+		return mensCorrecto;
+		}
+		
+		function validarForm(){
+			var res = true;
+			var mensaje = "";
+			if(!validarString(nombre.value,2,120)){
+				res = false;
+				mensaje += "el nombre y apellidos tiene que ser una cadena de caracteres de entre 2 y 120 caracteres.\n";
+			}
+			if(!validarString(direccion.value,4,120)){
+				res = false;
+				mensaje += "la direccion tiene que ser una cadena de caracteres de entre 4 y 120 caracteres.\n";
+			}
+			if(!validarString(direccionCompleta.value,0,120)){
+				res = false;
+				mensaje += "la direccion completa tiene que tener como maximo 120 caracteres.\n";
+			}
+			if(!validarTelefono(telefono.value)){
+				res = false;
+				mensaje += "el telefono tiene que ser un numero de nueve digitos y comenzar con 6, 7 o 9.\n";
+			}
+			if(!validarCP(codigoPostal.value)){
+				res = false;
+				mensaje += "el codigo postal tiene que ser un numero de 5 digitos.\n";
+			}
+			if (provincia.options[provincia.selectedIndex].value==0) {
+				res = false;
+				mensaje += "Debe de seleccionar una provincia\n";
+			}	
+			if(!validarString(usuario,1,null)){
+				res = false;
+				mensaje += "el nombre de usuario no puede estar en blanco y no puden ser un numero.\n";
+			}
+			if(!validarContrasena(contrasena)){
+				res = false;
+				mensaje += "la contraseña tiene que tener entre 8 y 16 caracteres, que debe contener solo letras y numeros, y por lo menos una letra mayuscula, una letra minuscula y un numero.\n";
+			}
+			if(contrasena.value != contrasena2.value){
+				res = false;
+				mensaje += "las contraseñas no coinciden";
+			}		
+
+			if(res == false)
+				alert(mensaje);
+
+			return res;
+		}
+		
+	</script>  
+</head>
+<body>
+    <main>
+        <div class="logo">
+            <h1>DeJovenes</h1>
+            <h2>Únete al club</h2>
+        </div>
+        <from id="formulario">
+            <div>
+                <label>Nombre</label><br>
+                <input type="text" placeholder="Introduzca su nombre" id="nombreInput" onfocus="inFoco(this)" onblur="outFoco(this);validarStringInside(this, 1, 20, errorNombre);">
+                <p class="error" id="errorNombre">Error, el nombre no puede estar vacío o superar los 20 caracteres.</p>
+            </div>
+            <div>
+                <label>Apellidos</label><br>
+                <input type="text" placeholder="Introduzca sus apellidos" id="nombreInput" onfocus="inFoco(this)" onblur="outFoco(this);validarStringInside(this, 1, 20, errorApellidos);">
+                <p class="error" id="errorApellidos">Error, los apellidos no pueden estar vacíos o superar los 40 caracteres.</p>
+            </div>
+            <div>
+                <label>DNI</label><br>
+                <input type="text" placeholder="Introduzca su nombre" id="nombreInput" onfocus="inFoco(this)" onblur="outFoco(this);validarStringInside(this, 1, 20, errorDNI);">
+                <p class="error" id="errorDNI">Error, el dni no es válido o está vacío.</p>
+            </div>
+        </from>
+    </main>
+</body>
+</html>
