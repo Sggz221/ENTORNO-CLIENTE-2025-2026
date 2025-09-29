@@ -1,4 +1,97 @@
+/* Fuente lexend */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+:root{
+    --color-fondo: #eeeeee;
+}
+
+*{
+    font-family: 'Lexend';
+    margin: 0;
+    padding: 0;
+    font-size: 1.1rem;
+}
+
+body{
+    display: flex;
+    margin-top: 30px;
+    background-color: var(--color-fondo);
+    justify-content: center;
+}
+
+main{
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+.logo{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.logo h1{
+    font-size: 2.5rem;
+    border-radius: 4px;
+    width: 100%;
+    padding: 4px;
+    background-color: #354bc9;
+    color: white;
+}
+
+.logo h2{
+    font-size: 1.5rem;
+}
+
+form{
+    text-align: left;
+    margin: 30px;
+}
+
+div{
+    margin-bottom: 5%;
+}
+span, label{
+    margin-bottom: 4px;
+}
+.sexo input{
+    margin-right: 8px;
+}
 .error {
     display: none;
     color: red;
+}
+
+input[type="text"] {
+    background: white;
+    border: 2px solid #ccc;   /* borde gris suave */
+    padding: 8px 12px;
+    border-radius: 8px;       /* esquinas redondeadas */
+    font-size: 16px;
+    outline: none;            /* quita el borde azul fuerte */
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #3498db;    /* cambia el color del borde al hacer focus */
+}
+
+
+input[type="submit"] {
+    background: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background: black;
+    color: white;
 }

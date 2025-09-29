@@ -236,13 +236,13 @@
         <form id="formulario" action="">
             <div>
                 <label>Nombre</label><br>
-                <input type="text" placeholder="Introduzca su nombre" id="nombreInput" onfocus="inFoco(this)" onblur="outFoco(this);validarStringInside(this, 1, 20, errorNombre);">
-                <p class="error" id="errorNombre">Error, el nombre no puede estar vacío o superar los 20 caracteres.</p>
+                <input type="text" placeholder="Introduzca su nombre" id="nombreInput" onfocus="inFoco(this)" onblur="outFoco(this);validarStringInside(this, 2, 60, errorNombre);">
+                <p class="error" id="errorNombre">Error, el nombre no puede estar vacío y debe estar entre 2 y 60 caracteres.</p>
             </div>
             <div>
                 <label>Apellidos</label><br>
-                <input type="text" placeholder="Introduzca sus apellidos" id="apellidosInput" onfocus="inFoco(this)" onblur="outFoco(this);validarStringInside(this, 1, 20, errorApellidos);">
-                <p class="error" id="errorApellidos">Error, los apellidos no pueden estar vacíos o superar los 40 caracteres.</p>
+                <input type="text" placeholder="Introduzca sus apellidos" id="apellidosInput" onfocus="inFoco(this)" onblur="outFoco(this);validarStringInside(this, 2, 80, errorApellidos);">
+                <p class="error" id="errorApellidos">Error, los apellidos no pueden estar vacíos y debe estar entre 2 y 80 caracteres.</p>
             </div>
             <div>
                 <label>DNI</label><br>
@@ -254,6 +254,54 @@
                 <input type="text" placeholder="DD/MM/AAAA" id="fechainput" onfocus="inFoco(this)" onblur="outFoco(this);validarFechaInside(this, errorFecha);">
                 <p class="error" id="errorFecha">Error, la fecha de nacimiento no tiene el formato correcto DD/MM/AAAA o no es valida. Tenga en cuenta que si la fecha solo tiene una cifra debe poner los 0 que considere.</p>
 			</div>
+			<div class="sexo">
+				<label>Sexo (No esta validado)</label><br>
+				<span>Hombre</span>
+				<input type="radio" name="genero" id="hombreRadio">
+				<span>Mujer</span>
+				<input type="radio" name="genero" id="mujerRadio">
+				<span>Otro</span>
+				<input type="radio" name="genero" id="otroRadio">
+                <p class="error" id="errorFecha">Error, debe seleccionar algun campo.</p>
+			</div>
+			<div>
+				<label>Subir DNI</label><br>
+				<input type="file"><br>
+				<span class="error" id="errorDniFoto">Error, debe subir una imagen</span>
+			</div>
+			<div>
+				<label>Intereses</label><br>
+				<select id="intereses">
+					<option>Musica</option>
+					<option>Literatura</option>
+					<option>Cocina</option>
+					<option>Fisica</option>
+					<option>Informatica</option>
+				</select>
+				<span class="error" id="errorIntereses">Error, debes seleccionar un interes.</span>
+			</div>
+			<div>
+				<label>CP</label>
+				<input type="text" id="codigoPostal">
+				<label>Provincia</label>
+				<input type="text" id="provincia" disabled><br>
+				<span class="error" id="errorCP">Error, el ccodigo post al no es valido o esta vacio.</span>
+			</div>
+			<div>
+				<label>Situacion actual</label><br>
+				<select id="situacionActual">
+					<option>Estudiante</option>
+					<option>En paro</option>
+					<option>Trabajando</option>
+				</select>
+				<span class="error" id="errorSituacionActual">Error, debe seleccionar una situacion actual</span>
+			</div>
+			<div>
+				<label>Acepta las condiciones</label>
+				<input type="checkbox" id="aceptoCondiciones">
+				<span class="error" id="errorCondiciones">Error, debe aceptar las condicionses para enviar el formulario</span>
+			</div>
+			<input type="submit" id="submitButton">
         </form>
     </main>
 </body>
