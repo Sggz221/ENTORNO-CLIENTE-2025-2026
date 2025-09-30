@@ -62,8 +62,8 @@
 			}
 		}
 
-		function validarTelefonoInside(elemento, capaerror){ //[679]99999999 /primer digito 6, 7 o 9 y 8 digitos mas 
-			if(!validarTelefono(elemento.value)){ 
+		function validarCPInside(elemento,provincia,capaerror){ //comprueba si es numerico el campo enviado 
+			if(!validarCP(elemento.value, provincia)){
 				elemento.style.backgroundColor = "lightyellow";
 				elemento.style.borderColor = "red";	
 				mostrar(capaerror);
@@ -71,18 +71,6 @@
 				elemento.style.backgroundColor = "";
 				elemento.style.borderColor = "";
 				noMostrar(capaerror);
-			}
-		}
-
-		function validarCPInside(elemento,min,max,capaerror){ //comprueba si es numerico el campo enviado 
-			if(!validarCP(elemento.value)){
-				elemento.style.backgroundColor = "lightyellow";
-				elemento.style.borderColor = "red";	
-				mostrar(capaerror);
-			}else{
-				elemento.style.backgroundColor = "";
-				elemento.style.borderColor = "";
-				noMostrar(capaerror);				
 			}
 		}
 
@@ -106,38 +94,12 @@
 			}
 		}
 
-		function validarContrasenaInside(elemento,capaerror){ //valida el formato de la contraseña a XXXXX 
-			if(!validarContrasena(elemento)){
-				elemento.style.backgroundColor = "lightyellow";
-				elemento.style.borderColor = "red";
-				mostrar(capaerror);
-			}else{
-				elemento.style.backgroundColor ="";
-				elemento.style.borderColor = "";
-				noMostrar(capaerror);	
-			}
-		}
-		
-		function mismaContrasenaInside(pasw1,pasw2,capaerror){ //valida que ambas contraseñas sean iguales (inside)
-			if(pasw1.value != pasw2.value){
-				pasw2.style.backgroundColor = "lightyellow";
-				pasw2.style.borderColor = "red";
-				mostrar(capaerror);
-			}else{
-				pasw2.style.backgroundColor ="";
-				pasw2.style.borderColor = "";
-				noMostrar(capaerror);	
-			}
-		}
-
 		function recuperarDatos(){
 
-			var mensCorrecto = "Nombre y apellidos: " + nombre.value + ".\n" +
+			var mensCorrecto = "Nombre: " + nombre.value + ".\n" +
+								"Apellidos: " + apellidos.value + ".\n" +
 								"Direccion: " + direccion.value + ".\n" +
-								"Direccion completa: " + direccionCompleta.value + ".\n" +
-								"Telefono: " + telefono.value + ".\n" +
-								"Codigo postal: " + codigoPostal.value + ".\n" +
-								"Ciudad: " + ciudad.value + ".\n" +
+								"CP: " + codigoPostal.value + ".\n" +
 								"Provincia: ";
 			var lis = document.getElementById("provincia");
 			if(lis[lis.selectedIndex].value != "selecciona")
@@ -233,7 +195,7 @@
             <h1>DeJovenes</h1>
             <h2>Únete al club</h2>
         </div>
-        <form id="formulario" action="">
+        <form id="formulario" action="" onsubmit="return validarForm()">
             <div>
                 <label>Nombre</label><br>
                 <input type="text" placeholder="Introduzca su nombre" id="nombreInput" onfocus="inFoco(this)" onblur="outFoco(this);validarStringInside(this, 2, 60, errorNombre);">
@@ -254,7 +216,7 @@
                 <input type="text" placeholder="DD/MM/AAAA" id="fechainput" onfocus="inFoco(this)" onblur="outFoco(this);validarFechaInside(this, errorFecha);">
                 <p class="error" id="errorFecha">Error, la fecha de nacimiento no tiene el formato correcto DD/MM/AAAA o no es valida. Tenga en cuenta que si la fecha solo tiene una cifra debe poner los 0 que considere.</p>
 			</div>
-			<div class="sexo">
+			<div id="sexo">
 				<label>Sexo (No esta validado)</label><br>
 				<span>Hombre</span>
 				<input type="radio" name="genero" id="hombreRadio">
@@ -262,7 +224,7 @@
 				<input type="radio" name="genero" id="mujerRadio">
 				<span>Otro</span>
 				<input type="radio" name="genero" id="otroRadio">
-                <p class="error" id="errorFecha">Error, debe seleccionar algun campo.</p>
+                <p class="error" id="errorSexo">Error, debe seleccionar algun campo.</p>
 			</div>
 			<div>
 				<label>Subir DNI</label><br>
@@ -282,7 +244,7 @@
 			</div>
 			<div>
 				<label>CP</label>
-				<input type="text" id="codigoPostal">
+				<input type="text" id="codigoPostal" onfocus="inFoco(this)" onblur="validarCPInside(this, provincia, errorCP)">
 				<label>Provincia</label>
 				<input type="text" id="provincia" disabled><br>
 				<span class="error" id="errorCP">Error, el ccodigo post al no es valido o esta vacio.</span>
@@ -301,7 +263,10 @@
 				<input type="checkbox" id="aceptoCondiciones">
 				<span class="error" id="errorCondiciones">Error, debe aceptar las condicionses para enviar el formulario</span>
 			</div>
-			<input type="submit" id="submitButton">
+			<div class="buttons">
+				<button id="borrarButton">Borrar</button>
+				<input type="submit" id="submitButton">
+			</div>
         </form>
     </main>
 </body>
