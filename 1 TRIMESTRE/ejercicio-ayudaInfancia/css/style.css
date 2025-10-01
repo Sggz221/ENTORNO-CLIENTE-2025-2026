@@ -1,0 +1,44 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+nav{
+    display: flex;
+    color: white;
+    background-color: #ee1d23;
+}
+
+.logo {
+    display: inline;
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+.navbar li{
+    display: inline;
+    list-style: none;
+}
+
+h1, h2{
+    color: #ee1d23;
+}
+
+li::marker{
+    color: #ee1d23;
+}
+
+#logo {
+    background-color: #fff;
+    padding: 4px;
+    border-radius: 4px;
+    margin: 20px;
+    height: 100px;
+}
+
+#hero {
+    width: 100% ;
+}
