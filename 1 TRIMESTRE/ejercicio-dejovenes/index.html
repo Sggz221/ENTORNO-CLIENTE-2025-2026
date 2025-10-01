@@ -187,6 +187,51 @@
 			return res;
 		}
 		
+
+		function limpiarCampos(){
+			var nombre = document.getElementById('nombreInput');
+			var apellidos = document.getElementById('apellidosInput');
+			var dni = document.getElementById('dniInput');
+			var fecha = document.getElementById('fechainput');
+			var radioHombre = document.getElementById('hombreRadio');
+			var radioMujer = document.getElementById('mujerRadio');
+			var radioOtro = document.getElementById('otroRadio');
+			var dniFoto = document.getElementById('dniFoto');
+			var cp = document.getElementById('codigoPostal');
+			var acepto = document.getElementById('aceptoCondiciones');
+
+			nombre.value = '';
+			apellidos.value = '';
+			dni.value = '';
+			fecha.value = '';
+			if(radioHombre.checked) radioHombre.checked = false;
+			else if (radioMujer.checked) radioMujer.checked = false;
+			else if (radioOtro.checked) radioOtro.checked = false;
+			cp.value = '';
+			acepto.checked = false;
+
+			noMostrar(errorNombre);
+			noMostrar(errorApellidos);
+			noMostrar(errorDNI);
+			noMostrar(errorFecha);
+			noMostrar(errorSexo);
+			noMostrar(errorDniFoto);
+			noMostrar(errorCP);
+			noMostrar(errorCondiciones);
+
+			nombre.style.backgroundColor = '';
+			nombre.style.borderColor = '';
+			apellidos.style.backgroundColor = '';
+			apellidos.style.borderColor = '';
+			dni.style.backgroundColor = '';
+			dni.style.borderColor = '';
+			fecha.style.backgroundColor = '';
+			fecha.style.borderColor = '';
+			dniFoto.style.backgroundColor = '';
+			dniFoto.style.borderColor = '';
+			cp.style.backgroundColor = '';
+			cp.style.borderColor = '';
+		}
 	</script>  
 </head>
 <body>
@@ -228,7 +273,7 @@
 			</div>
 			<div>
 				<label>Subir DNI</label><br>
-				<input type="file"><br>
+				<input type="file" id="dniFoto"><br>
 				<span class="error" id="errorDniFoto">Error, debe subir una imagen</span>
 			</div>
 			<div>
@@ -264,8 +309,8 @@
 				<span class="error" id="errorCondiciones">Error, debe aceptar las condicionses para enviar el formulario</span>
 			</div>
 			<div class="buttons">
-				<button id="borrarButton">Borrar</button>
-				<input type="submit" id="submitButton">
+				<button type="button" id="borrarButton" onclick="limpiarCampos()">Borrar</button>
+				<button type="submit" id="submitButton">Enviar</button>
 			</div>
         </form>
     </main>

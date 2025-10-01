@@ -90,7 +90,7 @@ input[type="text"]:focus {
     margin: 4px;
 }
 
-input[type="submit"] {
+button[type="submit"] {
     background: white;
     color: black;
     border: 2px solid black;
@@ -101,7 +101,7 @@ input[type="submit"] {
     transition: all 0.3s ease;
 }
 
-input[type="submit"]:hover {
+button[type="submit"]:hover {
     background: black;
     color: white;
 }
