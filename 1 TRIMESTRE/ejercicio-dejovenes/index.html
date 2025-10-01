@@ -94,99 +94,80 @@
 			}
 		}
 
-		function recuperarDatos(){
-
-			var mensCorrecto = "Nombre: " + nombre.value + ".\n" +
-								"Apellidos: " + apellidos.value + ".\n" +
-								"Direccion: " + direccion.value + ".\n" +
-								"CP: " + codigoPostal.value + ".\n" +
-								"Provincia: ";
-			var lis = document.getElementById("provincia");
-			if(lis[lis.selectedIndex].value != "selecciona")
-				mensCorrecto += lis[lis.selectedIndex].value + ".\n";
-			else
-				mensCorrecto += "\n";
-				mensCorrecto += "Preferente: ";
-
-				if(preferente.checked){
-					mensCorrecto += "Marcado.";
-				}else{
-					mensCorrecto += "No marcado.";
-				}
-
-				mensCorrecto += "\nSexo: ";
-
-				if(hombre.checked)
-					mensCorrecto += "Hombre.";
-				else
-					mensCorrecto += "Mujer.";
-
-				mensCorrecto += "\nIntereses: ";
-
-				lis = document.getElementById("interes");
-
-				var cont =0;
-
-				for(var i = 0; i< lis.length; i++){
-					if(lis[i].selected){
-						if(cont == 0)
-							mensCorrecto += lis[i].value;
-						else
-							mensCorrecto += ", " + lis[i].value;
-						cont++;
-					}
-				}
-				mensCorrecto += ".\nUsuario: " + usuario.value +".";
-
-		return mensCorrecto;
+		function validarDniFotoInside(elemento, capaerror){
+			if(!validarDniFoto(elemento.value)){
+				mostrar(capaerror);
+			}
+			else{
+				noMostrar(capaerror);
+			}
 		}
 		
 		function validarForm(){
 			var res = true;
 			var mensaje = "";
-			if(!validarString(nombre.value,2,120)){
+			if(!validarString(nombreInput.value,2,60)){
 				res = false;
-				mensaje += "el nombre y apellidos tiene que ser una cadena de caracteres de entre 2 y 120 caracteres.\n";
+				mensaje += "el nombre tiene que ser una cadena de caracteres de entre 2 y 60 caracteres.\n";
 			}
-			if(!validarString(direccion.value,4,120)){
+			if(!validarString(apellidosInput.value,2,80)){
 				res = false;
-				mensaje += "la direccion tiene que ser una cadena de caracteres de entre 4 y 120 caracteres.\n";
+				mensaje += "los apellidos tienen que ser una cadena de caracteres de entre 2 y 80 caracteres.\n";
 			}
-			if(!validarString(direccionCompleta.value,0,120)){
+			if(!validarDni(dniInput.value)){
 				res = false;
-				mensaje += "la direccion completa tiene que tener como maximo 120 caracteres.\n";
+				mensaje += "el DNI no es válido o está vacío.\n";
 			}
-			if(!validarTelefono(telefono.value)){
+			if(!validarFecha(fechainput.value)){
 				res = false;
-				mensaje += "el telefono tiene que ser un numero de nueve digitos y comenzar con 6, 7 o 9.\n";
+				mensaje += "la fecha no es válida.\n";
 			}
-			if(!validarCP(codigoPostal.value)){
+
+			
+			if(!validarBotones('genero')){
+				res = false;
+				mensaje += "no has seleccionado nada en el género.";
+			}
+			
+			if(!validarCP(codigoPostal.value, provincia)){
 				res = false;
 				mensaje += "el codigo postal tiene que ser un numero de 5 digitos.\n";
 			}
-			if (provincia.options[provincia.selectedIndex].value==0) {
-				res = false;
-				mensaje += "Debe de seleccionar una provincia\n";
-			}	
-			if(!validarString(usuario,1,null)){
-				res = false;
-				mensaje += "el nombre de usuario no puede estar en blanco y no puden ser un numero.\n";
-			}
-			if(!validarContrasena(contrasena)){
-				res = false;
-				mensaje += "la contraseña tiene que tener entre 8 y 16 caracteres, que debe contener solo letras y numeros, y por lo menos una letra mayuscula, una letra minuscula y un numero.\n";
-			}
-			if(contrasena.value != contrasena2.value){
-				res = false;
-				mensaje += "las contraseñas no coinciden";
-			}		
 
-			if(res == false)
-				alert(mensaje);
+			if (!validarDniFoto(document.getElementById("dniFoto"))){
+				res = false;
+				mensaje += "La foto no tiene el formato correcto o no se ha subido.\n";
+			}
 
+			if(res == false) alert(mensaje);
+			else alert('Todo bien')
 			return res;
 		}
 		
+		function enviarDatos(){
+			var mensaje = "";
+			
+			mensaje += document.getElementById('nombreInput').value + "\n";
+			mensaje += document.getElementById('apellidosInput').value + "\n";
+			mensaje += document.getElementById('dniInput').value + "\n";
+			mensaje += document.getElementById('fechainput').value + "\n";
+			if(document.getElementById('hombreRadio').checked) mensaje += "Género: Hombre\n";
+			else if(document.getElementById('mujerRadio').checked) mensaje += "Género: Mujer\n";
+			else mensaje += "Género: Otro\n";
+			var intereses = document.getElementById("intereses");
+
+			mensaje += intereses[intereses.selectedIndex].value += "\n";
+
+			mensaje += document.getElementById("codigoPostal").value += "\n";
+
+			mensaje += document.getElementById("provincia").value += "\n";
+
+			var situacion = document.getElementById("situacionActual");
+
+			mensaje += situacion[situacion.selectedIndex].value += "\n";
+
+			return mensaje
+		}
 
 		function limpiarCampos(){
 			var nombre = document.getElementById('nombreInput');
@@ -203,6 +184,7 @@
 			nombre.value = '';
 			apellidos.value = '';
 			dni.value = '';
+			dniFoto.value = '';
 			fecha.value = '';
 			if(radioHombre.checked) radioHombre.checked = false;
 			else if (radioMujer.checked) radioMujer.checked = false;
@@ -213,6 +195,7 @@
 			noMostrar(errorNombre);
 			noMostrar(errorApellidos);
 			noMostrar(errorDNI);
+			noMostrar(errorDniFoto);
 			noMostrar(errorFecha);
 			noMostrar(errorSexo);
 			noMostrar(errorDniFoto);
@@ -232,6 +215,14 @@
 			cp.style.backgroundColor = '';
 			cp.style.borderColor = '';
 		}
+
+		function cambiarCondiciones(){
+			var condicionesCheck = document.getElementById('aceptoCondiciones');
+			var submitButton = document.getElementById('submitButton');
+			// Si está pulsado se habilita, de lo contrario se deshabilita.
+			if(condicionesCheck.checked) submitButton.disabled = false;
+			else submitButton.disabled = true;
+		}
 	</script>  
 </head>
 <body>
@@ -240,7 +231,7 @@
             <h1>DeJovenes</h1>
             <h2>Únete al club</h2>
         </div>
-        <form id="formulario" action="" onsubmit="return validarForm()">
+        <form id="formulario" action="javascript:alert(enviarDatos())" onsubmit="return validarForm()">
             <div>
                 <label>Nombre</label><br>
                 <input type="text" placeholder="Introduzca su nombre" id="nombreInput" onfocus="inFoco(this)" onblur="outFoco(this);validarStringInside(this, 2, 60, errorNombre);">
@@ -272,9 +263,9 @@
                 <p class="error" id="errorSexo">Error, debe seleccionar algun campo.</p>
 			</div>
 			<div>
-				<label>Subir DNI</label><br>
-				<input type="file" id="dniFoto"><br>
-				<span class="error" id="errorDniFoto">Error, debe subir una imagen</span>
+				<label>Subir DNI (.jpg, .png, .gif)</label><br>
+				<input type="file" id="dniFoto" onblur="validarDniFotoInside(this, errorDniFoto)"><br>
+				<span class="error" id="errorDniFoto">Error, debe subir una imagen, o la extensión no es válida</span>
 			</div>
 			<div>
 				<label>Intereses</label><br>
@@ -305,12 +296,12 @@
 			</div>
 			<div>
 				<label>Acepta las condiciones</label>
-				<input type="checkbox" id="aceptoCondiciones">
+				<input type="checkbox" id="aceptoCondiciones" onchange="cambiarCondiciones();">
 				<span class="error" id="errorCondiciones">Error, debe aceptar las condicionses para enviar el formulario</span>
 			</div>
 			<div class="buttons">
 				<button type="button" id="borrarButton" onclick="limpiarCampos()">Borrar</button>
-				<button type="submit" id="submitButton">Enviar</button>
+				<button type="submit" id="submitButton" disabled>Enviar</button>
 			</div>
         </form>
     </main>

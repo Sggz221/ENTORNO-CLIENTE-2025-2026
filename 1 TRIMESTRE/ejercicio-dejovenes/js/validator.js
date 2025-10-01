@@ -34,25 +34,43 @@ function validarDni(dni) {
     return letraDni === dni.substring(8); // la última letra
 }
 
+function validarDniFoto(input) {
+	if (input.files == null || input.files == undefined) return false; // no hay archivo
+	var nombre = input.files[0].name; //Nos quedamos con el nombre
+	var extension = nombre.slice(-4).toLowerCase(); // Del nombre, nos quedamos con los últimos 4 caracteres
+
+	if (extension === ".png" || extension === ".jpg" || extension === ".gif") {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
 function validarFecha(fecha) {
     // Formato correcto dd/mm/yyyy
     var regex = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
+	
+	// Extraer partes de la fecha
+    var dia = parseInt(fecha.substring(0, 2), 10); // Indicando base decimal
+    var mes = parseInt(fecha.substring(3, 5), 10);
+    var year = parseInt(fecha.substring(6, 10), 10);
+
     if (!regex.test(fecha)) {
         return false;
     }
 
-    // Extraer partes de la fecha
-    var dia = parseInt(fecha.substring(0, 2), 10); // Indicando base decimal
-    var mes = parseInt(fecha.substring(3, 5), 10);
-    var year = parseInt(fecha.substring(6, 10), 10);
+	var esBisiesto = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+	var maxDiaFebrero = 28;
+
+	if (esBisiesto) maxDiaFebrero = 29;
 
     // Validar mes
     if (mes < 1 || mes > 12) return false;
 
     // Validar días segun el mes
     if (mes === 2) { // Febrero
-		
-        if (dia < 1 || dia > 29) {
+        if (dia < 1 || dia > maxDiaFebrero) {
 			return false
 		};
     } else if ([4, 6, 9, 11].includes(mes)) { 

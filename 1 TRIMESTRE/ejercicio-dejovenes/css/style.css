@@ -121,3 +121,20 @@ button:hover {
     background: #ff3838;
     color: white;
 }
+
+button[disabled]{
+    background: white;
+    color: #cdcdcd;
+    border: 2px solid #cdcdcd;
+    cursor: not-allowed;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button[disabled]:hover{
+    background: white;
+    color: #cdcdcd;
+    border: 2px solid #cdcdcd;
+}
