@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 *{
-    
     font-family: "Outfit", sans-serif;
     margin: 0;
 }
@@ -215,4 +214,45 @@ img {
 #hero {
     width: 100% ;
     border-radius: 0%;
+}
+
+.subFooter{
+    display: block;
+    align-content: space-between;
+    justify-items: center;
+    min-width: 32%;
+    margin-right: 4px;
+}
+footer {
+    text-decoration: underline;
+    font-size: large;
+    display: flex;
+    height: 30vh;
+    color: white;
+    background-color: #ee1d23;
+}
+footer img {
+    margin-top: 5%;
+    padding: 2px;
+    background-color: #fff;
+    border-radius: 2px;
+    height: 100px;
+}
+footer ul{
+    align-content: center;
+    justify-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+}
+footer h2{
+    margin-top: 5%;
+    text-align: center;
+    color: white;
+}
+
+.subFooter p {
+    max-width: 300px;
+    margin-top: 10%;
 }
