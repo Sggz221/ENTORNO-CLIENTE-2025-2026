@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+*{
+    font-family: "Merriweather", serif;
+    font-size: 1em;
+}
+
+body {
+    background-color: #fffbe8;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+    background-color: #fffdf3;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2em; /* 32px */
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    border: none;
+    border:0.1em solid #796500 ;
+    color: #796500;
+    border-radius: 4px;
+    background-color: transparent;
+    transition: 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #796500;
+    color: #fffbe8;
+}
+
+.logo {
+    color: #d3b000;
+    font-size: 3em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.direccion {
+    color: #796500;
+    display: flex;
+    flex-direction: column;
+}
+.calculos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculos * {
+    margin-right: 0.5em;
+}
+
+hr {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#precio {
+    padding: 1em;
+    margin-right: 0.3em;
+}
+
+table {
+    margin: 2em;
+    background-color: white;
+    border-radius: 0.5em;
+    padding: 2em;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+tr {
+    margin-bottom: 0.5em;
+}

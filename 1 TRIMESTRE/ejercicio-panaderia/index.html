@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+    <script src="/js/validate.js"></script>
+    <script>
+        function validarCantidad(cantidad) { 
+            if (!validarNumeros(cantidad.value)) { 
+                cantidad.style.borderColor = "#ff0000"; 
+                return false; 
+            } 
+            else { 
+                cantidad.style.borderColor = ""; 
+                return true; 
+            } 
+        }
+
+        function addToTicket(productosId, cantidadId) {
+            const productos = document.getElementById(productosId);
+            const productoSelected = productos.options[productos.selectedIndex].text;
+            const cantidadInput = document.getElementById(cantidadId);
+
+            if (!validarCantidad(cantidadInput)) return;
+
+            const cantidad = parseInt(cantidadInput.value);
+
+            const table = document.querySelector("table");
+            const filas = table.querySelectorAll("tr");
+
+            let filaExistente = null;
+
+            filas.forEach((fila, index) => {
+                if (index === 0 || fila.id === "filaTotal") return;
+                const nombreProducto = fila.children[0].textContent;
+                if (nombreProducto === productoSelected) {
+                    filaExistente = fila;
+                }
+            });
+            if (filaExistente) {
+                const tdCantidad = filaExistente.children[2];
+                tdCantidad.textContent = parseInt(tdCantidad.textContent, 10) + cantidad;
+            } else {
+                createTd(productoSelected, cantidad);
+            }
+
+            cantidadInput.value = "";
+            updateTotal(); // actualizar total
+        }
+
+        function createTd(producto, cantidad) {
+            const table = document.querySelector("table");
+            const newRow = document.createElement("tr");
+            const totalRow = document.createElement("tr");
+
+            const tdProducto = document.createElement("td");
+            tdProducto.innerHTML = producto;
+
+            const tdPrecio = document.createElement("td");
+            let precio = getPrecio(producto);
+            tdPrecio.innerHTML = precio.toFixed(2);
+
+            const tdCantidad = document.createElement("td");
+            tdCantidad.innerHTML = cantidad;
+
+            const tdEliminar = document.createElement("td");
+            const btnEliminar = document.createElement("button");
+            btnEliminar.innerHTML = "-";
+
+            btnEliminar.addEventListener("click", () => {
+                let cantidadActual = parseInt(tdCantidad.textContent, 10);
+                if (cantidadActual > 1) {
+                    tdCantidad.innerHTML = cantidadActual - 1;
+                } else {
+                    newRow.remove();
+                }
+            });
+
+            tdEliminar.appendChild(btnEliminar);
+
+            newRow.appendChild(tdProducto);
+            newRow.appendChild(tdPrecio);
+            newRow.appendChild(tdCantidad);
+            newRow.appendChild(tdEliminar);
+
+            table.appendChild(newRow);
+        }
+        function getPrecio(producto) { 
+            switch(producto) { 
+                case "Pistola": return 0.6; 
+                case "Baguette": return 0.7; 
+                case "Chapata": return 1.0; 
+                default: return 0; 
+            }
+        }
+        function updateTotal() {
+            const table = document.querySelector("table");
+            const filas = table.querySelectorAll("tr");
+            let total = 0;
+
+            filas.forEach((fila, index) => {
+                if (index === 0 || fila.id === "filaTotal") return; // saltar encabezado y total
+                const precio = parseFloat(fila.children[1].textContent);
+                const cantidad = parseInt(fila.children[2].textContent, 10);
+                total += precio * cantidad;
+            });
+
+            document.getElementById("total").textContent = total.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <hr>
+        <span class="logo">PanScript</span>
+        <div class="direccion">
+            <span>PanScript S.A.</span>
+            <span>C/Del Trigo, 24</span>
+            <span>28912 Madrid</span>
+            <span>Tlf.: 91 694 55 66</span>
+        </div>
+        <hr>
+    </nav>
+    <main>
+        <div class="calculos">
+            <span>Producto: </span>
+            <select id="productos">
+                <option>Pistola</option>
+                <option>Baguette</option>
+                <option>Chapata</option>
+            </select>
+            <span>Cantidad: </span>
+            <input type="text" id="cantidad">
+            <button id="addToTicket" onclick="addToTicket('productos', 'cantidad');">+</button>
+        </div>
+        <table>
+        <tr id="cabezaTicket">
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th></th>
+        </tr>
+        <tr id="filaTotal">
+            <td colspan="3"><strong>Total:</strong></td>
+            <td id="total">0.00</td>
+            <td></td>
+        </tr>
+    </table>
+    </main>
+</body>
+</html>
