@@ -1,0 +1,231 @@
+body {
+    font-family: "Segoe UI", sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    padding-top: 15em; /* deja espacio para el header fijo */
+}
+
+html {
+    scroll-padding-top: 16em;
+    scroll-behavior: smooth;
+}
+
+header {
+    background-color: #5bc54c;
+    color: white;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+    transition: transform 0.3s ease;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+header p {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+}
+
+header ul {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+    padding: 1rem 1rem;
+    background-color: #4ba43e;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+}
+
+header a:hover {
+    background-color: #3e8833;
+}
+
+section {
+    max-width: 1100px;
+    margin: 2rem auto;
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+.tablas {
+    display: flex;
+}
+
+h2 {
+    color: #2b960a;
+    border-bottom: 2px solid #98d294;
+    padding-bottom: 0.3rem;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+}
+
+a {
+    color: #98d294;
+}
+
+img {
+    max-width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    margin-left: 1em;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 0.8rem;
+    text-align: left;
+}
+
+table th {
+    background-color: #bde8b9;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #499e3e;
+    color: white;
+    margin-top: 2rem;
+}
+
+/* ===== CARRUSEL ===== */
+.carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.images-wrapper {
+    display: flex;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+.images-wrapper img {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Botones de navegación */
+.carroussel {
+    margin-top: 0;
+}
+
+.carousel-container button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    color: #333;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.carousel-container button:hover {
+    background-color: rgba(91, 197, 76, 0.8);
+    color: white;
+}
+
+.carousel-container .prev {
+    left: 10px;
+}
+
+.carousel-container .next {
+    right: 10px;
+}
+
+/* ===== MENÚ HAMBURGUESA ===== */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 1.2rem;
+    z-index: 100000;
+}
+
+@media (max-width: 700px) {
+
+    header {
+        align-items: center;
+        justify-content: center;
+        padding: 1.2rem 1rem;
+        position: fixed;
+        flex-direction: column;
+    }
+
+    .menu-toggle {
+        display: block; /* mostrar el botón */
+        margin-right: 2em;
+    }
+
+    header ul {
+        display: none; /* oculto por defecto */
+        flex-direction: column;
+        background-color: #4ba43e;
+        position: absolute;
+        top: 100%; /* debajo del header */
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        z-index: 99998;
+    }
+
+    header ul.show {
+        display: flex; /* mostrar menú al hacer clic */
+    }
+
+    header ul li {
+        width: 100%;
+        border-top: 1px solid rgba(255,255,255,0.3);
+    }
+
+    header a {
+        display: block;
+        border-radius: 0;
+        padding: 1rem;
+    }
+    .tables {
+        display: block;
+    }
+}

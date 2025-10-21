@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siempre Activos - Actividades de Mayores</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+        function pintarTablaImpares(){
+            const COLOR = "#e2fae0"
+            let tbodies = document.querySelectorAll('tbody');
+            tbodies.forEach(tbody => {
+                Array.from(tbody.rows).forEach((tr, indice) => {
+                    if (indice % 2 === 0) tr.style.backgroundColor = COLOR;
+                    else tr.style.backgroundColor = '';
+                });
+            });
+        }
+        window.onload = pintarTablaImpares;
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Siempre Activos</h1>
+        <p>Actividades de Mayores 2017-2018</p>
+        <ul>
+            <li><a href="#insripcionesRequisitos">Requisitos</a></li>
+            <li><a href="#actividades">Actividades</a></li>
+            <li><a href="#listado">Listado</a></li>
+        </ul>
+        <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+    </header>
+
+    <section class="carroussel">
+        <div class="carousel-container">
+            <button class="prev">&#10094;</button>
+            <div class="images-wrapper">
+                <img src="../media/imagen1.webp" alt="Abuelos en residencia">
+                <img src="../media/imagen2.webp" alt="Abuelos en residencia">
+                <img src="../media/imagen3.webp" alt="Abuelos en residencia">
+                <img src="../media/imagen4.webp" alt="Abuelos en residencia">
+            </div>
+            <button class="next">&#10095;</button>
+        </div>
+    </section>
+
+
+    <section class="intro">
+        <h2 id="insripcionesRequisitos">Inscripciones y Requisitos</h2>
+        <p>Las actividades son <strong>gratuitas</strong>.</p>
+        <p>Pueden participar vecinos inscritos en el padrón municipal mayores de 65 años, pensionistas o jubilados totales o parciales mayores de 55 años y sus cónyuges mayores de 55 años.</p>
+
+        <h3>Fechas y lugares para nuevas inscripciones</h3>
+        <ul>
+            <li><strong>Centro de Mayores Gutiérrez Soto:</strong> del 4 al 8 de septiembre (C/ Gutiérrez Soto, 8, telf. 91 343 2090)</li>
+            <li><strong>Centro de Mayores María de Vera:</strong> del 11 al 15 de septiembre (C/ José Antonio, 42, telf. 91 634 9300 ext. 2460)</li>
+        </ul>
+        <p>Más información: <a href="mailto:activmayores@aytoboadilla.com">activmayores@aytoboadilla.com</a></p>
+    </section>
+
+  <section class="novedades">
+    <h2 id="actividades">Nuevas Actividades 2017/2018</h2>
+    <ul>
+      <li>Cursos y grupos de conversación en inglés</li>
+      <li>Ampliación de horarios de yoga y taichi</li>
+      <li>Escuela de Abuelos</li>
+      <li>Visitas guiadas Madrid Cultural</li>
+      <li>Taller de mejora de los hábitos de sueño</li>
+      <li>Talleres de decoración y creación de documentos Word</li>
+    </ul>
+  </section>
+
+    <section>
+        <h2 id="listado">Listado de Actividades</h2>
+        <div class="tablas">
+            <table>
+                <thead>
+                <tr>
+                    <th>Talleres</th>
+                    <th>Días</th>
+                    <th>Horario</th>
+                    <th>Centro</th>
+                    <th>Horas<br>semanales</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td>Gimnasia Aeróbica</td><td>L/X</td><td>9:00–10:00</td><td>María de Vera</td><td>1</td></tr>
+                <tr><td>Informática Básica</td><td>V</td><td>9:00–10:00</td><td>Centro Empresas</td><td>3</td></tr>
+                <tr><td>Yoga</td><td>M/J</td><td>9:00–10:00</td><td>Gutiérrez Soto</td><td>2</td></tr>
+                <tr><td>Taichi</td><td>V</td><td>10:30–12:00</td><td>María de Vera</td><td>2</td></tr>
+                <tr><td>Inglés Avanzado</td><td>J</td><td>10:30–11:30</td><td>Gutiérrez Soto</td><td>1</td></tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                <tr>
+                    <th>Talleres</th>
+                    <th>Días</th>
+                    <th>Horario</th>
+                    <th>Centro</th>
+                    <th>Horas<br>semanales</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td>Baile 3</td><td>L/X</td><td>9:00–10:00</td><td>María de Vera</td><td>1</td></tr>
+                <tr><td>Baile 4</td><td>M</td><td>9:00–10:00</td><td>Gutiérrez Soto</td><td>3</td></tr>
+                <tr><td>Teatro</td><td>M/J</td><td>9:00–10:00</td><td>Gutiérrez Soto</td><td>2</td></tr>
+                <tr><td>Guitarra 1</td><td>V</td><td>10:30–12:00</td><td>María de Vera</td><td>2</td></tr>
+                <tr><td>Guitarra 2</td><td>J</td><td>10:30–11:30</td><td>Gutiérrez Soto</td><td>1</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <p>Concejalía de Mayores · Plaza de la Villa s/n · Tel. 91 632 4910</p>
+        <p>Email: <a href="mailto:mayores@aytoboadilla.com">mayores@aytoboadilla.com</a></p>
+    </footer>
+    <script>
+        const wrapper = document.querySelector('.images-wrapper');
+        const images = document.querySelectorAll('.images-wrapper img');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+
+        let index = 0;
+
+        function showImage(i) {
+            if (i < 0) index = images.length - 1;
+            else if (i >= images.length) index = 0;
+            else index = i;
+
+            wrapper.scrollTo({
+                left: wrapper.clientWidth * index,
+                behavior: 'smooth'
+            });
+        }
+
+        prevBtn.addEventListener('click', () => showImage(index - 1));
+        nextBtn.addEventListener('click', () => showImage(index + 1));
+
+        const toggleBtn = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('header ul');
+
+        toggleBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+    </script>
+
+</body>
+</html>
