@@ -81,5 +81,6 @@ table {
 }
 
 tr {
+    border: 3px black;
     margin-bottom: 0.5em;
 }

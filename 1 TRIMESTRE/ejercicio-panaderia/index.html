@@ -10,7 +10,7 @@
     <script src="/js/validate.js"></script>
     <script>
         function validarCantidad(cantidad) { 
-            if (!validarNumeros(cantidad.value)) { 
+            if (!validarNumeros(cantidad.value) || parseInt(cantidad.value) < 0) { 
                 cantidad.style.borderColor = "#ff0000"; 
                 return false; 
             } 
@@ -53,31 +53,30 @@
         }
 
         function createTd(producto, cantidad) {
-            const table = document.querySelector("table");
             const newRow = document.createElement("tr");
-            const totalRow = document.createElement("tr");
 
             const tdProducto = document.createElement("td");
-            tdProducto.innerHTML = producto;
+            tdProducto.textContent = producto;
 
             const tdPrecio = document.createElement("td");
-            let precio = getPrecio(producto);
-            tdPrecio.innerHTML = precio.toFixed(2);
+            const precio = getPrecio(producto);
+            tdPrecio.textContent = precio.toFixed(2);
 
             const tdCantidad = document.createElement("td");
-            tdCantidad.innerHTML = cantidad;
+            tdCantidad.textContent = cantidad;
 
             const tdEliminar = document.createElement("td");
             const btnEliminar = document.createElement("button");
-            btnEliminar.innerHTML = "-";
+            btnEliminar.textContent = "-";
 
             btnEliminar.addEventListener("click", () => {
-                let cantidadActual = parseInt(tdCantidad.textContent, 10);
+                const cantidadActual = parseInt(tdCantidad.textContent, 10);
                 if (cantidadActual > 1) {
-                    tdCantidad.innerHTML = cantidadActual - 1;
+                    tdCantidad.textContent = cantidadActual - 1;
                 } else {
                     newRow.remove();
                 }
+                updateTotal();
             });
 
             tdEliminar.appendChild(btnEliminar);
@@ -87,8 +86,10 @@
             newRow.appendChild(tdCantidad);
             newRow.appendChild(tdEliminar);
 
-            table.appendChild(newRow);
+            const filaTotal = document.getElementById("filaTotal");
+            filaTotal.parentNode.insertBefore(newRow, filaTotal);
         }
+
         function getPrecio(producto) { 
             switch(producto) { 
                 case "Pistola": return 0.6; 
@@ -111,6 +112,27 @@
 
             document.getElementById("total").textContent = total.toFixed(2);
         }
+        
+        function imprimirTicket() {
+            const filas = document.querySelectorAll("table tr");
+            let ticket = "=== TICKET DE COMPRA ===\n\n";
+
+            filas.forEach((fila, index) => {
+                if (index === 0 || fila.id === "filaTotal") return; // saltar cabecera y total
+                const producto = fila.children[0].textContent;
+                const precio = parseFloat(fila.children[1].textContent);
+                const cantidad = parseInt(fila.children[2].textContent, 10);
+                const subtotal = (precio * cantidad).toFixed(2);
+                ticket += `${producto}  x${cantidad}  = ${subtotal} €\n`;
+            });
+
+            const total = document.getElementById("total").textContent;
+            ticket += `\nTOTAL: ${total} €`;
+
+            alert(ticket);
+        }
+
+
     </script>
 </head>
 <body>
@@ -136,6 +158,8 @@
             <span>Cantidad: </span>
             <input type="text" id="cantidad">
             <button id="addToTicket" onclick="addToTicket('productos', 'cantidad');">+</button>
+            <button onclick="imprimirTicket()">Imprimir ticket</button>
+
         </div>
         <table>
         <tr id="cabezaTicket">
@@ -145,11 +169,12 @@
             <th></th>
         </tr>
         <tr id="filaTotal">
-            <td colspan="3"><strong>Total:</strong></td>
+            <td colspan="1"><strong>Total:</strong></td>
             <td id="total">0.00</td>
             <td></td>
         </tr>
     </table>
     </main>
+
 </body>
 </html>
