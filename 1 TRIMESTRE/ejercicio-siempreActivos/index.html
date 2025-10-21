@@ -8,7 +8,7 @@
     <script>
         function pintarTablaImpares(){
             const COLOR = "#e2fae0"
-            let tbodies = document.querySelectorAll('tbody');
+            const tbodies = document.querySelectorAll('tbody');
             tbodies.forEach(tbody => {
                 Array.from(tbody.rows).forEach((tr, indice) => {
                     if (indice % 2 === 0) tr.style.backgroundColor = COLOR;

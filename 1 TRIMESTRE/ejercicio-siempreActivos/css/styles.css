@@ -95,7 +95,8 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
-    margin-left: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 
 table th, table td {
@@ -225,7 +226,11 @@ footer {
         border-radius: 0;
         padding: 1rem;
     }
-    .tables {
-        display: block;
+
+}
+@media (max-width: 980px) {
+    .tablas {
+        display: flex;
+        flex-direction: column;
     }
 }
