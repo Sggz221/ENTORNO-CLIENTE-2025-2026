@@ -72,6 +72,10 @@ section {
     display: flex;
 }
 
+.textoFoto {
+    display: flex;
+}
+
 h2 {
     color: #2b960a;
     border-bottom: 2px solid #98d294;
