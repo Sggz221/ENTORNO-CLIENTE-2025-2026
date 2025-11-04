@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Correos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f8f9fa; }
+    .h1 { text-align: center; margin-top: 20px; font-weight: bold; color: #002453; }
+    form {
+      background: white; padding: 20px; border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1); margin: 30px auto; max-width: 700px;
+    }
+    .alerta-error { color: #d9534f; font-size: 0.9em; margin-top: 5px; }
+  </style>
+</head>
+<body>
+  <div class="container-lg d-flex mx-auto justify-content-center m-0 bg-warning">
+    <img src="media/LogoCornamusa.svg" alt="Logo correos" style="width: 3em;">
+    <span class="h1 m-4">Correos - Formulario</span>
+  </div>
+
+  <form id="formOptica" novalidate>
+    <h4 class="text-center mb-4">Introduzca sus datos</h4>
+
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre (1)</label>
+      <input type="text" class="form-control" id="nombre" maxlength="100" required>
+      <div class="alerta-error d-none" id="errorNombre"></div>
+    </div>
+
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Empresa (1)</label>
+      <input type="text" class="form-control" id="nombre" maxlength="100" required>
+      <div class="alerta-error d-none" id="errorNombre"></div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email *</label>
+      <input type="email" class="form-control" id="email" maxlength="100" required>
+      <div class="alerta-error d-none" id="errorEmail"></div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-6">
+        <label for="tipoDocumento" class="form-label">Tipo de documento *</label>
+        <select class="form-select w-auto" id="tipoDocumento" required>
+            <option value="dni">DNI</option>
+            <option value="nie">NIE</option>
+          </select>
+        <div class="alerta-error d-none" id="errorCP"></div>
+      </div>
+      <div class="col-6">
+        <label for="numeroDocumento" class="form-label">Número de documento *</label>
+        <input type="text" class="form-control w-auto" id="numeroDocumento" maxlength="9" required>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="telefono" class="form-label">Teléfono</label>
+      <input type="tel" class="form-control" id="telefono" placeholder="(Opcional, empezado en 6, 7 o 9)">
+      <div class="alerta-error d-none" id="errorTelefono"></div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="tipoVia" class="form-label">Tipo de vía *</label>
+        <input type="text" class="form-control" id="tipoVia" maxlength="5" required>
+        <div class="alerta-error d-none" id="errorCP"></div>
+      </div>
+      <div class="col-md-8">
+        <label for="nombreVia" class="form-label">Nombre de vía *</label>
+        <input type="text" class="form-control" id="nombreVia" required>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-2">
+        <label for="numeroVia">Número</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="col-2">
+        <label for="numeroVia">Bloque</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="col-2">
+        <label for="numeroVia">Portal</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="col-2">
+        <label for="numeroVia">Piso</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="col-2">
+        <label for="numeroVia">Escalera</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="col-2">
+        <label for="numeroVia">Puerta</label>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <label for="cp" class="form-label">Código Postal *</label>
+        <input type="text" class="form-control" id="cp" maxlength="5" required>
+        <div class="alerta-error d-none" id="errorCP"></div>
+      </div>
+      <div class="col-md-8">
+        <label for="provincia" class="form-label">Provincia</label>
+        <input type="text" class="form-control" id="provincia" readonly disabled>
+      </div>
+    </div>
+
+    <hr>
+    <!-- Peso y peso volumétrico -->
+    <h4 class="text-center mb-4">Peso y tamaño</h4>
+
+    <div class="mb-3">
+      <div class="row">
+        <div class="col-4">
+          <label for="peso">Peso (kg) *</label>
+          <input type="text" class="form-control" id="peso">
+        </div>
+        <div class="col-4">
+          <label for="pesoVolumetrico">Peso volumétrico *</label>
+          <input type="text" class="form-control" id="pesoVolumetrico" required disabled>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <label for="alto">Alto (cm) *</label>
+          <input type="text" class="form-control" id="alto">
+        </div>
+        <div class="col-3">
+          <label for="ancho">Ancho (cm) *</label>
+          <input type="text" class="form-control" id="ancho">
+        </div>
+        <div class="col-3">
+          <label for="largo">Largo (cm) *</label>
+          <input type="text" class="form-control" id="largo">
+        </div>
+        <div class="col-3">
+          <button class="btn btn-secondary mt-4">Calcular</button>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+    <!-- Envío de vuelta asociado -->
+    <h4 class="text-center mb-4">Envío de vuelta asociado</h4>
+    <div class="row">
+      <div class="form-check mx-3 mb-3">
+        <label for="checkEnvioVuelta" class="form-check-label">Preparar envío de vuelta asociado</label>
+        <input type="checkbox" class="form-check-input">
+      </div>
+    </div>
+
+    <hr>
+    <!-- Servicios adicionales -->
+     <h4 class="text-center mb-4">Servicios adicionales al envío</h4>
+    <div class="row">
+      <div class="col-md-6 col-sm-12 mt-5">
+          <label for="checkEnvioVuelta" class="form-check-label">Seguro a todo riesgo</label>
+          <input type="checkbox" class="form-check-input">
+        </div>
+        <div class="col-md-6 col-sm-12 mt-2">
+          <label for="fecha" class="form-label">Fecha deseada *</label>
+          <input type="text" class="form-control" id="fecha" placeholder="dd/mm/aaaa" required title="Elija una fecha a partir de mañana">
+          <div class="alerta-error d-none" id="errorFecha"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div class="mb-3">
+      <label for="comentarios" class="form-label">Comentarios</label>
+      <textarea class="form-control" id="comentarios" maxlength="250" rows="3"></textarea>
+    </div>
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="condiciones">
+      <label class="form-check-label" for="condiciones">
+        Aceptar <a href="#" data-bs-toggle="modal" data-bs-target="#modalCondiciones">condiciones</a>
+      </label>
+      <div class="alerta-error d-none" id="errorCondiciones"></div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+  </form>
+
+  <!-- Modal Condiciones -->
+  <div class="modal fade" id="modalCondiciones" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Condiciones de uso</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Al enviar este formulario, usted acepta que sus datos serán tratados conforme a la Ley de Protección de Datos y utilizados sólo para la gestión de su solicitud.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Errores -->
+  <div class="modal fade" id="modalErrores" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title">Errores en el formulario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="listaErrores"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Datos -->
+  <div class="modal fade" id="modalDatos" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title">Datos Enviados</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="datosFinales"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Asociación CP → Provincia
+    const cpProvincia = {
+      1: "Álava", 2: "Albacete", 3: "Alicante", 4: "Almería", 5: "Ávila", 6: "Badajoz",
+      7: "Islas Baleares", 8: "Barcelona", 9: "Burgos", 10: "Cáceres", 11: "Cádiz", 12: "Castellón",
+      13: "Ciudad Real", 14: "Córdoba", 15: "A Coruña", 16: "Cuenca", 17: "Gerona", 18: "Granada",
+      19: "Guadalajara", 20: "Guipúzcoa", 21: "Huelva", 22: "Huesca", 23: "Jaén", 24: "León",
+      25: "Lérida", 26: "La Rioja", 27: "Lugo", 28: "Madrid", 29: "Málaga", 30: "Murcia",
+      31: "Navarra", 32: "Ourense", 33: "Asturias", 34: "Palencia", 35: "Las Palmas",
+      36: "Pontevedra", 37: "Salamanca", 38: "Santa Cruz de Tenerife", 39: "Cantabria",
+      40: "Segovia", 41: "Sevilla", 42: "Soria", 43: "Tarragona", 44: "Teruel", 45: "Toledo",
+      46: "Valencia", 47: "Valladolid", 48: "Vizcaya", 49: "Zamora", 50: "Zaragoza",
+      51: "Ceuta", 52: "Melilla"
+    };
+
+    const form = document.getElementById('formOptica');
+    const modalErrores = new bootstrap.Modal(document.getElementById('modalErrores'));
+    const modalDatos = new bootstrap.Modal(document.getElementById('modalDatos'));
+
+    // Auto-asignar provincia según CP
+    form.cp.addEventListener('input', e => {
+      const cp = e.target.value;
+      if (cp.length >= 2) {
+        const prefijo = parseInt(cp.substring(0, 2), 10);
+        document.getElementById('provincia').value = cpProvincia[prefijo] || '';
+      } else {
+        document.getElementById('provincia').value = '';
+      }
+    });
+
+    // Función para validar si una fecha es válida y bisiesta
+    function validarFechaTexto(fechaTexto) {
+      if (!/^\d{2}\/\d{2}\/\d{4}$/.test(fechaTexto)) return false;
+      const [dia, mes, año] = fechaTexto.split("/").map(Number);
+      if (mes < 1 || mes > 12) return false;
+      const diasMes = [31, (esBisiesto(año) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+      if (dia < 1 || dia > diasMes[mes - 1]) return false;
+      return true;
+    }
+
+    function esBisiesto(anio) {
+      return (anio % 4 === 0 && anio % 100 !== 0) || (anio % 400 === 0);
+    }
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const errores = [];
+      document.querySelectorAll('.alerta-error').forEach(el => el.classList.add('d-none'));
+
+      const nombre = form.nombre.value.trim();
+      if (nombre.length < 2 || nombre.length > 100) {
+        errores.push("El nombre debe tener entre 2 y 100 caracteres.");
+        mostrarError('errorNombre', "Debe tener entre 2 y 100 caracteres.");
+      }
+
+      const email = form.email.value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        errores.push("El email no es válido.");
+        mostrarError('errorEmail', "Email no válido.");
+      }
+
+      const tel = form.telefono.value.trim();
+      if (tel && !/^[679]\d{8}$/.test(tel)) {
+        errores.push("El teléfono debe comenzar por 6, 7 o 9 y tener 9 dígitos.");
+        mostrarError('errorTelefono', "Teléfono no válido.");
+      }
+
+      const cp = form.cp.value.trim();
+      if (!/^\d{5}$/.test(cp)) {
+        errores.push("El código postal debe tener 5 dígitos.");
+        mostrarError('errorCP', "CP no válido.");
+      } else if (!document.getElementById('provincia').value) {
+        errores.push("El código postal no corresponde a una provincia válida.");
+        mostrarError('errorCP', "Provincia desconocida.");
+      }
+
+      if (!form.producto.value) {
+        errores.push("Debe seleccionar Gafas o Lentes de contacto.");
+        mostrarError('errorProducto', "Seleccione una opción.");
+      }
+
+      const fechaTexto = form.fecha.value.trim();
+      if (!validarFechaTexto(fechaTexto)) {
+        errores.push("El formato o la fecha no es válido (verifique día, mes y año bisiesto).");
+        mostrarError('errorFecha', "Fecha no válida o inexistente.");
+      } else {
+        const [dia, mes, año] = fechaTexto.split("/").map(Number);
+        const fecha = new Date(año, mes - 1, dia);
+        const hoy = new Date();
+        const mañana = new Date(hoy);
+        mañana.setHours(0,0,0,0);
+        mañana.setDate(hoy.getDate() + 1);
+        if (fecha < mañana) {
+          errores.push("La fecha debe ser a partir de mañana.");
+          mostrarError('errorFecha', "Fecha no válida.");
+        }
+      }
+
+      if (!form.condiciones.checked) {
+        errores.push("Debe aceptar las condiciones.");
+        mostrarError('errorCondiciones', "Debe aceptar las condiciones.");
+      }
+
+      if (errores.length > 0) {
+        document.getElementById('listaErrores').innerHTML = errores.map(e => `<div class="alert alert-danger">${e}</div>`).join('');
+        modalErrores.show();
+      } else {
+        const dolencias = Array.from(form.dolencias.selectedOptions).map(o => o.value).join(', ');
+        const datos = `
+          <strong>Nombre:</strong> ${nombre}<br>
+          <strong>Email:</strong> ${email}<br>
+          <strong>Teléfono:</strong> ${tel || 'No indicado'}<br>
+          <strong>Código Postal:</strong> ${cp}<br>
+          <strong>Provincia:</strong> ${form.provincia.value}<br>
+          <strong>Producto:</strong> ${form.producto.value}<br>
+          <strong>Dolencias:</strong> ${dolencias || 'Ninguna'}<br>
+          <strong>Fecha deseada:</strong> ${fechaTexto}<br>
+          <strong>Comentarios:</strong> ${form.comentarios.value || 'Sin comentarios'}<br>
+        `;
+        document.getElementById('datosFinales').innerHTML = datos;
+        modalDatos.show();
+        form.reset();
+        document.getElementById('provincia').value = '';
+      }
+    });
+
+    function mostrarError(id, mensaje) {
+      const campo = document.getElementById(id);
+      campo.textContent = mensaje;
+      campo.classList.remove('d-none');
+    }
+  </script>
+</body>
+</html>
