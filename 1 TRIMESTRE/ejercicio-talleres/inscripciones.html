@@ -80,56 +80,55 @@
             </div>
             </nav>
         </header>
-        <main class="container my-5 pt-5">
-            <div class="mt-5 py-5"></div> <!--Margen manual para que el navbar no tape el contenido-->
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae aliquid dicta commodi doloremque rerum corrupti cupiditate exercitationem, natus inventore vel ut in! Laborum hic quaerat fugiat reprehenderit tenetur esse est!</p>
         
-            <div id="carouselExample" class="carousel slide" style="max-width: 1000px;">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                    <img src="media/image.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                    <img src="media/image2.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                    <img src="media/image3.png" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-            <div class="container my-4">
-                <div class="row g-3">
-                    <div class="text-white h5 p-3 col-md-6">
-                        <div class="bg-blue rounded m-1 p-4">
-                        El Centro de Empresas Municipal (CEM) de Boadilla del Monte, es un espacio para el emprendimiento.
-                        Entre los meses de septiembre y diciembre de 2018, ofrecemos una completa oferta formativa para
-                        dinamizar el emprendimiento e impulsar el conocimiento en varias áreas de interés; coaching
-                        ejecutivo/estratégico, marketing, asesoramiento económico y financiero para emprender y mentoring
-                        para emprender.
-                        </div>
-                    </div>
-                    <div class="text-white h5 p-3 col-md-6">
-                        <div class="bg-blue rounded m-1 p-4">
-                        En esta nueva edición contamos con formadores especialistas que nos van a ofrecer estrategias de
-                        comunicación y gestión comercial, claves para activar una mente vendedora, herramientas para activar
-                        una creatividad rentable, elementos para conocer el entorno en el que vamos a emprender, la estructura
-                        de la cuenta de resultados y cómo rentabilizar nuestro perfil profesional de LinkedIn. Las jornadas de
-                        formación que os presentamos en este díptico van dirigidas a profesionales, emprendedores, directivos,
-                        equipos comerciales y en general a cualquier persona que quiera emprender una idea de negocio.
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <main class="container mt-5 p-5">
+            <div class="container my-5 py-5">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-body p-5">
+                        <h2 class="fw-bold text-center text-primary mb-4">Formulario de Inscripción a Talleres</h2>
 
+                        <form>
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label fw-semibold">Nombre completo</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe tu nombre">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-semibold">Correo electrónico</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="tucorreo@ejemplo.com">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label fw-semibold">Teléfono</label>
+                                <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ej: 600123456">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="taller" class="form-label fw-semibold">Selecciona el taller</label>
+                                <select class="form-select" id="taller" name="taller">
+                                    <option value="">-- Elige una opción --</option>
+                                    <option value="taller1">Taller 1: Coaching Ejecutivo y Estratégico</option>
+                                    <option value="taller2">Taller 2: Encuentro Empresarial Networking</option>
+                                    <option value="taller3">Taller 3: Técnicas de Venta y Marketing</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="comentarios" class="form-label fw-semibold">Comentarios (opcional)</label>
+                                <textarea class="form-control" id="comentarios" name="comentarios" rows="3" placeholder="Añade un comentario..."></textarea>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary px-5 py-2">Enviar inscripción</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </main>
+
+
+
         <footer class="bg-blue text-white text-center text-lg-start">
             <div class="text-center p-5" style="background-color: rgba(0, 0, 0, 0.05);">
                 © 2020 Copyright: Ayuntamiento Boadilla del Monte
