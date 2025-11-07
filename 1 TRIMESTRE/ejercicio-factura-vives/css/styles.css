@@ -1,0 +1,26 @@
+.h1-custom {
+    border-left: 0.2em solid rgb(91, 136, 249);
+}
+#tabla-factura th {
+    vertical-align: middle;
+    text-align: center;
+}
+#tabla-factura .form-control,
+#tabla-factura .form-select {
+    min-width: 80px;
+}
+#tabla-factura .input-descripcion {
+    min-width: 200px;
+}
+#tabla-factura .btn-borrar {
+    width: 100%;
+}
+#summaryModal .table {
+    font-size: 0.9rem;
+}
+#summaryModal h5 {
+    color: #0d6efd;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-top: 1rem;
+}
